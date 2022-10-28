@@ -6,18 +6,20 @@ import Navbar from "../Navbar";
 
 function ListOfExercises() {
   const [exercises, setExercises] = useState([]);
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzViYWUzZDU5YTc2NGUwYTVmZGFiZTAiLCJlbWFpbCI6InNlcmVnZXlrdmFzaGFAZ21haWwuY29tIiwibmFtZSI6ImFkbWluaXN0cmF0b3IiLCJpYXQiOjE2NjY5NTMxNTIsImV4cCI6MTY2Njk3NDc1Mn0.NpIDIVhaIVfi4ZhMQjJbZr1n7KhahBAZiZ8FpLnCwlc";
 
-  const getListOfExercises = () => {
-    useEffect(() => {
-      axios
-        .get("http://localhost:5005/api/exercises")
-        .then((response) => setExercises(response.data));
-      console.log(response.data).catch((err) => console.log(err));
-    });
-    useEffect(() => {
-      getListOfExercises();
-    }, []);
-  };
+  useEffect(() => {
+    axios
+      .get("http://localhost:5005/api/exercises", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setExercises(response.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div>
