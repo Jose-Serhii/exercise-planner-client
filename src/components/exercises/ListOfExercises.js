@@ -26,9 +26,20 @@ function ListOfExercises() {
       {exercises.map((exercise) => {
         console.log(exercise);
         return (
-          <div key={exercise._id}>
-            <h3>{exercise.title}</h3>
-          </div>
+          <Link to={`/exercises/${exercise._id}`}>
+            <div key={exercise._id}>
+              <h3>{exercise.title}</h3>
+              <h3>{exercise.category}</h3>
+              <h3>{exercise.type}</h3>
+              <h3>{exercise.intensity}</h3>
+              <h3>{exercise.muscle}</h3>
+              <h3>{exercise.specificArea}</h3>
+              <h3>{exercise.duration}</h3>
+              <h3>{exercise.timeUnit}</h3>
+              <h3>{exercise.imageUrl}</h3>
+              <h3>{exercise.description}</h3>
+            </div>
+          </Link>
         );
       })}
     </div>
