@@ -9,13 +9,13 @@ function ExerciseDetails(props) {
   const navigate = useNavigate();
 
   const [exercise, setExercise] = useState({});
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzViYWUzZDU5YTc2NGUwYTVmZGFiZTAiLCJlbWFpbCI6InNlcmVnZXlrdmFzaGFAZ21haWwuY29tIiwibmFtZSI6ImFkbWluaXN0cmF0b3IiLCJpYXQiOjE2NjY5NzExMTMsImV4cCI6MTY2Njk5MjcxM30.fi2NpJEZ9-7hbaS-goTNGBqZCkMbkPY9QXxKigoY9jU";
+  const storedToken = localStorage.getItem('authToken');
+
 
   useEffect(() => {
     axios
       .get(`http://localhost:5005/api/exercises/${exerciseId}`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
         setExercise(response.data);
@@ -26,7 +26,7 @@ function ExerciseDetails(props) {
   const deleteExercise = () => {
     axios
       .delete(`http://localhost:5005/api/exercises/${exerciseId}`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
         navigate("/exercises");
@@ -46,7 +46,8 @@ function ExerciseDetails(props) {
       <h3>{exercise.timeUnit}</h3>
       <h3>{exercise.imageUrl}</h3>
       <h3>{exercise.description}</h3>
-      <button onClick={deleteExercise}>DELETE THIS exercise</button>
+      <button onClick={deleteExercise}>delete this exercise</button>
+      <Link to={`/exercises/edit/${exerciseId}`}>edit this exercise</Link>
     </div>
   );
 }

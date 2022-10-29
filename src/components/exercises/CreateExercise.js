@@ -1,5 +1,6 @@
 
-import { useState } from "react";
+import { useState, } from "react";
+import { useNavigate } from "react-router-dom"
 import axios from "axios";
 
 const API_URL = "http://localhost:5005";
@@ -7,6 +8,8 @@ const API_URL = "http://localhost:5005";
 
 
 function CreateExercise(props) {
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [type, setType] = useState("");
@@ -15,14 +18,14 @@ function CreateExercise(props) {
   const [specificArea, setSpecificArea] = useState("");
   const [duration, setDuration] = useState("");
   const [timeUnit, setTimeUnit] = useState("");
-  const [imageUrl, setTimageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [description, setDescription] = useState("");
 
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const requestBody = { title, type, intensity, muscle, specificArea, duration, timeUnit, imageUrl, description };
+    const requestBody = { title, category, type, intensity, muscle, specificArea, duration, timeUnit, imageUrl, description };
 
     const storedToken = localStorage.getItem('authToken');
 
@@ -43,11 +46,11 @@ function CreateExercise(props) {
         setSpecificArea("");
         setDuration("");
         setTimeUnit("");
-        setTimageUrl("");
+        setImageUrl("");
         setDescription("");
+        navigate("/exercises");
 
 
-        props.refreshExercise();
       })
       .catch((error) => console.log(error));
   };
@@ -96,7 +99,7 @@ function CreateExercise(props) {
 
           <label>Image:</label>
           <input
-            type="text" name="imageUrl" value={imageUrl} onChange={(e) => setTimageUrl(e.target.value)} />
+            type="text" name="imageUrl" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
 
           <label>Description:</label>
           <input
