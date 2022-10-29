@@ -1,11 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../Navbar.css";
+import "./styling/Navbar.css";
 
 function Navbar() {
   return (
-    <>
-      <div className="navbar">
+    <div className="navbar">
+      <nav>
         <NavLink to="/login" className="buttonAuth">
           login
         </NavLink>
@@ -25,8 +25,8 @@ function Navbar() {
         <NavLink to="/create-exercise" className="buttonAuth">
           Create Exercise
         </NavLink>
-      </div>
-    </>
+      </nav>
+    </div>
   );
 }
 
