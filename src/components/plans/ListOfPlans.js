@@ -13,23 +13,24 @@ function ListOfPlans() {
                 headers: { Authorization: `Bearer ${storedToken}` },
             })
             .then((response) => {
-                console.log(response.data);
+
                 setPlans(response.data);
             })
             .catch((err) => console.log(err));
     }, []);
-
+    console.log(plans)
     return (
         <div className="main-container">
-            {plans.map((plan) => {
-                console.log(plan);
+            {plans.length !== 0 && plans.map((plan) => {
                 return (
                     <Link to={`/plans/${plan._id}`}>
                         <div key={plan._id} className="card">
                             <div className="container">
                                 <h3>{plan.day}</h3>
                                 <h3>{plan.date}</h3>
-                                <h3>{plan.activities}</h3>
+                                <h3>{plan.activities.map((activity) =>
+                                    <p>{activity.title}</p>
+                                )}</h3>
                                 <h3>{plan.description}</h3>
 
                             </div>

@@ -2,7 +2,6 @@ import React from "react";
 import { Navlink, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Navbar from "../Navbar";
 
 function ListOfExercises() {
   const [exercises, setExercises] = useState([]);
