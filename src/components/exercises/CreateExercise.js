@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import {
+  Button,
+  Form,
+  FormControl,
+  FormGroup,
+  FormLabel,
+  FormSelect,
+} from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const API_URL = "http://localhost:5005";
 
@@ -57,26 +66,26 @@ function CreateExercise(props) {
 
   return (
     <>
-      <div>
-        <form onSubmit={handleSubmit} id="exform">
-          <label>Title:</label>
-          <input
+      <div className="w-50 text-center">
+        <Form onSubmit={handleSubmit} id="exform">
+          <FormLabel className="mt-3">Title:</FormLabel>
+          <FormControl
             type="text"
             name="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
 
-          <label>Category:</label>
-          <input
+          <FormLabel className="mt-3">Category:</FormLabel>
+          <FormControl
             type="text"
             name="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           />
 
-          <label>Choose a type:</label>
-          <select
+          <FormLabel className="mt-3">Choose a type:</FormLabel>
+          <FormSelect
             type="text"
             name="type"
             value={type}
@@ -90,10 +99,10 @@ function CreateExercise(props) {
             <option>Coordination</option>
             <option>Warm-up</option>
             <option>Other</option>
-          </select>
+          </FormSelect>
 
-          <label>Intensity:</label>
-          <select
+          <FormLabel className="mt-3">Intensity:</FormLabel>
+          <FormSelect
             type="text"
             name="intensity"
             value={intensity}
@@ -103,10 +112,10 @@ function CreateExercise(props) {
             <option>Low</option>
             <option>Moderate</option>
             <option>High</option>
-          </select>
+          </FormSelect>
 
-          <label>Target muscle:</label>
-          <select
+          <FormLabel className="mt-3">Target muscle:</FormLabel>
+          <FormSelect
             type="text"
             name="muscle"
             value={muscle}
@@ -120,26 +129,26 @@ function CreateExercise(props) {
             <option>Legs</option>
             <option>Shoulders</option>
             <option>Other</option>
-          </select>
+          </FormSelect>
 
-          <label>Specific Area:</label>
-          <input
+          <FormLabel className="mt-3">Specific Area:</FormLabel>
+          <FormControl
             type="text"
             name="specificArea"
             value={specificArea}
             onChange={(e) => setSpecificArea(e.target.value)}
           />
 
-          <label>Duration:</label>
-          <input
+          <FormLabel className="mt-3">Duration:</FormLabel>
+          <FormControl
             type="text"
             name="duration"
             value={duration}
             onChange={(e) => setDuration(e.target.value)}
           />
 
-          <label>Time Unit:</label>
-          <select
+          <FormLabel className="mt-3">Time Unit:</FormLabel>
+          <FormSelect
             type="text"
             name="timeUnit"
             value={timeUnit}
@@ -148,26 +157,28 @@ function CreateExercise(props) {
             <option hidden>time unit</option>
             <option>Minutes</option>
             <option>Hours</option>
-          </select>
+          </FormSelect>
 
-          <label>Image:</label>
-          <input
+          <FormLabel className="mt-3">Image:</FormLabel>
+          <FormControl
             type="text"
             name="imageUrl"
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
           />
 
-          <label>Description:</label>
-          <input
+          <FormLabel className="mt-3">Description:</FormLabel>
+          <FormControl
             type="text"
             name="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
 
-          <button type="submit">Add Exercise</button>
-        </form>
+          <Button className="mt-4" type="submit" variant="success">
+            Add Exercise
+          </Button>
+        </Form>
       </div>
     </>
   );
