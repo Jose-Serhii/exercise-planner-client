@@ -25,6 +25,14 @@ function Navbar() {
         <NavLink to="/create-exercise" className="buttonAuth">
           Create Exercise
         </NavLink>
+        |
+        <NavLink to="/plans" className="buttonAuth">
+          Plans
+        </NavLink>
+        |
+        <NavLink to="/create-plan" className="buttonAuth">
+          Create Plan
+        </NavLink>
       </nav>
     </div>
   );

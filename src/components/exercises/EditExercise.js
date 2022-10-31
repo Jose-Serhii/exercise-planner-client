@@ -65,7 +65,7 @@ function EditExercise(props) {
 
 
     return (
-        <div className="EditProjectPage">
+        <div className="EditExercisePage">
             <h3>Edit the Project</h3>
 
             <form onSubmit={handleFormSubmit} id="exform">

@@ -8,6 +8,10 @@ import CreateExercise from "./components/exercises/CreateExercise";
 import EditExercise from "./components/exercises/EditExercise";
 import Signup from "./components/authentication/Signup";
 import Login from "./components/authentication/Login";
+import CreatePlan from "./components/plans/CreatePlan";
+import ListOfPlans from "./components/plans/ListOfPlans";
+import PlanDetails from "./components/plans/PlanDetails";
+import EditPlan from "./components/plans/EditPlan";
 
 
 
@@ -24,6 +28,10 @@ function App() {
         <Route path="/exercises/edit/:exerciseId" element={<EditExercise />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/plans" element={<ListOfPlans />} />
+        <Route path="/create-plan" element={<CreatePlan />} />
+        <Route path="/plans/:planId" element={<PlanDetails />} />
+        <Route path="/plans/edit/:planId" element={<EditPlan />} />
       </Routes>
     </div>
   );
