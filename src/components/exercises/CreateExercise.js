@@ -5,9 +5,9 @@ import {
   Button,
   Form,
   FormControl,
-  FormGroup,
   FormLabel,
   FormSelect,
+  Container,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -66,9 +66,9 @@ function CreateExercise(props) {
 
   return (
     <>
-      <div className="w-50 text-center">
+      <Container className="w-50 mb-5">
         <Form onSubmit={handleSubmit} id="exform">
-          <FormLabel className="mt-3">Title:</FormLabel>
+          <FormLabel className="mt-5">Title:</FormLabel>
           <FormControl
             type="text"
             name="title"
@@ -169,6 +169,8 @@ function CreateExercise(props) {
 
           <FormLabel className="mt-3">Description:</FormLabel>
           <FormControl
+            as="textarea"
+            rows={4}
             type="text"
             name="description"
             value={description}
@@ -179,7 +181,7 @@ function CreateExercise(props) {
             Add Exercise
           </Button>
         </Form>
-      </div>
+      </Container>
     </>
   );
 }

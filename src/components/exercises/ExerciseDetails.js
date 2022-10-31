@@ -1,7 +1,9 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { Component, useEffect, useState } from "react";
+import { useParams, useNavigate, NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button } from "react-bootstrap";
 
 function ExerciseDetails(props) {
   const { exerciseId } = useParams();
@@ -9,8 +11,7 @@ function ExerciseDetails(props) {
   const navigate = useNavigate();
 
   const [exercise, setExercise] = useState({});
-  const storedToken = localStorage.getItem('authToken');
-
+  const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {
     axios
@@ -46,8 +47,12 @@ function ExerciseDetails(props) {
       <h3>{exercise.timeUnit}</h3>
       <h3>{exercise.imageUrl}</h3>
       <h3>{exercise.description}</h3>
-      <button onClick={deleteExercise}>delete this exercise</button>
-      <Link to={`/exercises/edit/${exerciseId}`}>edit this exercise</Link>
+      <Button variant="danger" onClick={deleteExercise}>
+        Delete
+      </Button>
+      <Link className="text.secondary" to={`/exercises/edit/${exerciseId}`}>
+        edit this exercise
+      </Link>
     </div>
   );
 }
