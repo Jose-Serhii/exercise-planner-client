@@ -11,8 +11,6 @@ import {
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const API_URL = "http://localhost:5005";
-
 function CreateExercise(props) {
   const navigate = useNavigate();
 
@@ -45,7 +43,7 @@ function CreateExercise(props) {
     const storedToken = localStorage.getItem("authToken");
 
     axios
-      .post(`${API_URL}/api/exercises`, requestBody, {
+      .post(`${process.env.REACT_APP_API_URL}/api/exercises`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

@@ -2,7 +2,6 @@ import React from "react";
 import { Navlink, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-const API_URL = "http://localhost:5005";
 
 function ListOfPlans() {
   const [plans, setPlans] = useState([]);
@@ -10,7 +9,7 @@ function ListOfPlans() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/plans`, {
+      .get(`${process.env.REACT_APP_API_URL}/api/plans`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-const API_URL = "http://localhost:5005";
 
 function PlanDetails(props) {
   const { planId } = useParams();
@@ -14,7 +13,7 @@ function PlanDetails(props) {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/plans/${planId}`, {
+      .get(`${process.env.REACT_APP_API_URL}/api/plans/${planId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -25,7 +24,7 @@ function PlanDetails(props) {
 
   const deletePlan = () => {
     axios
-      .delete(`${API_URL}/api/plans/${planId}`, {
+      .delete(`${process.env.REACT_APP_API_URL}/api/plans/${planId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

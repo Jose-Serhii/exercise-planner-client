@@ -11,8 +11,6 @@ import {
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const API_URL = "http://localhost:5005";
-
 function EditExercise(props) {
   const storedToken = localStorage.getItem("authToken");
 
@@ -32,7 +30,7 @@ function EditExercise(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5005/api/exercises/${exerciseId}`, {
+      .get(`${process.env.REACT_APP_API_URL}/api/exercises/${exerciseId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -67,9 +65,13 @@ function EditExercise(props) {
     };
 
     axios
-      .put(`${API_URL}/api/exercises/${exerciseId}`, requestBody, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
+      .put(
+        `${process.env.REACT_APP_API_URL}/api/exercises/${exerciseId}`,
+        requestBody,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
+      )
       .then((response) => {
         navigate(`/exercises/${exerciseId}`);
       });

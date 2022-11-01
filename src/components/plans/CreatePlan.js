@@ -4,8 +4,6 @@ import { useEffect } from "react";
 
 import axios from "axios";
 
-const API_URL = "http://localhost:5005";
-
 function CreatePlan() {
   const navigate = useNavigate();
 
@@ -18,7 +16,7 @@ function CreatePlan() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/exercises`, {
+      .get(`${process.env.REACT_APP_API_URL}/api/exercises`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -33,7 +31,7 @@ function CreatePlan() {
     console.log(requestBody);
 
     axios
-      .post(`${API_URL}/api/plans`, requestBody, {
+      .post(`${process.env.REACT_APP_API_URL}/api/plans`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

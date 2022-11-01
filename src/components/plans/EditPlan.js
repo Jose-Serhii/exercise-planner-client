@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API_URL = "http://localhost:5005";
-
 function EditPlan(props) {
   const storedToken = localStorage.getItem("authToken");
 
@@ -17,7 +15,7 @@ function EditPlan(props) {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/plans/${planId}`, {
+      .get(`${process.env.REACT_APP_API_URL}/api/plans/${planId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -35,9 +33,13 @@ function EditPlan(props) {
     const requestBody = { day, date, activities, description };
 
     axios
-      .put(`${API_URL}/api/plans/${planId}`, requestBody, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
+      .put(
+        `${process.env.REACT_APP_API_URL}/api/plans/${planId}`,
+        requestBody,
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
+      )
       .then((response) => {
         navigate(`/plans/${planId}`);
       });
