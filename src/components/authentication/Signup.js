@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Button,
   Container,
@@ -43,7 +44,7 @@ function Signup(props) {
   };
 
   return (
-    <Container className="w-50 mb-5">
+    <Container className="w-25 mb-5">
       <h3 className="mt-5">Sign Up</h3>
 
       <Form onSubmit={handleSignupSubmit}>

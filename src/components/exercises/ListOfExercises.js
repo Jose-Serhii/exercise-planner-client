@@ -2,6 +2,10 @@ import React from "react";
 import { Navlink, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Stack from "react-bootstrap/Stack";
 
 function ListOfExercises() {
   const [exercises, setExercises] = useState([]);
@@ -20,29 +24,39 @@ function ListOfExercises() {
   }, []);
 
   return (
-    <div className="main-container">
+    <Card className="text-left" as="h5">
       {exercises.map((exercise) => {
         console.log(exercise);
         return (
-          <Link to={`/exercises/${exercise._id}`}>
-            <div key={exercise._id} className="card">
-              <div className="container">
-                <h3>{exercise.title}</h3>
-                <h3>{exercise.category}</h3>
-                <h3>{exercise.type}</h3>
-                <h3>{exercise.intensity}</h3>
-                <h3>{exercise.muscle}</h3>
-                <h3>{exercise.specificArea}</h3>
-                <h3>{exercise.duration}</h3>
-                <h3>{exercise.timeUnit}</h3>
-                <h3>{exercise.imageUrl}</h3>
-                <h3>{exercise.description}</h3>
-              </div>
-            </div>
-          </Link>
+          <>
+            <div />
+            <Stack gap={3}>
+              <Card.Header className="cardCustom" key={exercise._id}>
+                {exercise.title}
+              </Card.Header>
+              <Card.Body className="cardBody">
+                <Card.Title className="cardCustom">
+                  Category: {exercise.category}
+                </Card.Title>
+                <Card.Text className="cardCustom">
+                  Type: {exercise.type}
+                </Card.Text>
+                <Card.Text className="cardCustom">
+                  Intensity: {exercise.intensity}
+                </Card.Text>
+                <Card.Text className="cardCustom">
+                  {exercise.duration} {exercise.timeUnit}
+                </Card.Text>
+                <Link to={`/exercises/${exercise._id}`}>
+                  <Button variant="primary">More Info</Button>
+                </Link>
+              </Card.Body>
+              <Card.Footer className="text-muted"></Card.Footer>
+            </Stack>
+          </>
         );
       })}
-    </div>
+    </Card>
   );
 }
 
