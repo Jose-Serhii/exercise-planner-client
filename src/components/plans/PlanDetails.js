@@ -24,6 +24,7 @@ function PlanDetails(props) {
     }, []);
 
     const deletePlan = () => {
+        console.log(planId)
         axios
             .delete(`http://localhost:5005/api/plans/${planId}`, {
                 headers: { Authorization: `Bearer ${storedToken}` },
@@ -38,7 +39,7 @@ function PlanDetails(props) {
         <div>
             <h3>{plan.day}</h3>
             <h3>{plan.date}</h3>
-            <h3>{plan.activities}</h3>
+            <h3>{plan.activities?.map(ex => <p>{ex.title}</p>)}</h3>
             <h3>{plan.description}</h3>
             <button onClick={deletePlan}>delete this plan</button>
             <Link to={`/plans/edit/${planId}`}>edit this plan</Link>
