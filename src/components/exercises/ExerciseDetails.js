@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
 
+const API_URL = "http://localhost:5005";
+
 function ExerciseDetails(props) {
   const { exerciseId } = useParams();
 
@@ -15,7 +17,7 @@ function ExerciseDetails(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5005/api/exercises/${exerciseId}`, {
+      .get(`${API_URL}/api/exercises/${exerciseId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -26,7 +28,7 @@ function ExerciseDetails(props) {
 
   const deleteExercise = () => {
     axios
-      .delete(`http://localhost:5005/api/exercises/${exerciseId}`, {
+      .delete(`${API_URL}/api/exercises/${exerciseId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

@@ -3,13 +3,14 @@ import { Navlink, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+const API_URL = "http://localhost:5005";
 function ListOfExercises() {
   const [exercises, setExercises] = useState([]);
   const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {
     axios
-      .get("http://localhost:5005/api/exercises", {
+      .get(`${API_URL}/api/exercises`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

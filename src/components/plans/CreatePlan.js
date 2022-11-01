@@ -1,73 +1,96 @@
-import { useState, } from "react";
-import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 import axios from "axios";
 
 const API_URL = "http://localhost:5005";
 
-
 function CreatePlan() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const [day, setDay] = useState("");
-    const [date, setDate] = useState("");
-    const [activities, setActivities] = useState("");
-    const [description, setDescription] = useState("");
+  const [exercises, setExercises] = useState([]);
+  const [day, setDay] = useState("");
+  const [date, setDate] = useState("");
+  const [activities, setActivities] = useState("");
+  const [description, setDescription] = useState("");
+  const storedToken = localStorage.getItem("authToken");
 
+  useEffect(() => {
+    axios
+      .get(`${API_URL}/api/exercises`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        setExercises(response.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const requestBody = { day, date, activities, description }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const requestBody = { day, date, activities, description };
+    console.log(requestBody);
 
-        const storedToken = localStorage.getItem('authToken');
+    axios
+      .post(`${API_URL}/api/plans`, requestBody, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        setDay("");
+        setDate("");
+        setActivities("");
+        setDescription("");
+        navigate("/plans");
+      })
+      .catch((error) => console.log(error));
+  };
 
+  return (
+    <>
+      <div>
+        <form onSubmit={handleSubmit} id="plansform">
+          <label>Day:</label>
+          <input
+            type="text"
+            name="day"
+            value={day}
+            onChange={(e) => setDay(e.target.value)}
+          />
 
-        axios
-            .post(
-                `${API_URL}/api/plans`,
-                requestBody,
-                { headers: { Authorization: `Bearer ${storedToken}` } }
-            )
-            .then((response) => {
+          <label>Date:</label>
+          <input
+            type="text"
+            name="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
 
-                setDay("")
-                setDate("")
-                setActivities("")
-                setDescription("")
-                navigate("/plans")
+          <label>Activities:</label>
+          <select
+            multiple
+            type="text"
+            name="activities"
+            onChange={(e) => setActivities((prev) => [...prev, e.target.value])}
+          >
+            {exercises.map((exercises) => (
+              <option value={exercises._id}>{exercises.title}</option>
+            ))}
+          </select>
 
-            })
-            .catch((error) => console.log(error));
-    };
+          <label>Description:</label>
+          <input
+            type="text"
+            name="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
 
-
-
-    return (
-        <>
-            <div>
-                <form onSubmit={handleSubmit} id="plansform">
-                    <label>Day:</label>
-                    <input
-                        type="text" name="day" value={day} onChange={(e) => setDay(e.target.value)} />
-
-                    <label>Date:</label>
-                    <input
-                        type="text" name="date" value={date} onChange={(e) => setDate(e.target.value)} />
-
-                    <label>Activities:</label>
-                    <input
-                        type="text" name="activities" value={activities} onChange={(e) => setActivities(e.target.value)} />
-
-                    <label>Description:</label>
-                    <input
-                        type="text" name="description" value={description} onChange={(e) => setDescription(e.target.value)} />
-
-                    <button type="submit">Create Plan</button>
-
-                </form>
-
-            </div>
-        </>
-    )
+          <button type="submit">Create Plan</button>
+        </form>
+      </div>
+    </>
+  );
 }
 
 export default CreatePlan;
