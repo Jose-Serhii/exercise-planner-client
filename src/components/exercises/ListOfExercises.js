@@ -28,6 +28,7 @@ function ListOfExercises() {
   }, []);
 
   return (
+
     <Container className="w-75 mt-3">
       <Card className="text-left mt-3 border-0" bg="dark" as="h5">
         {exercises.map((exercise) => {

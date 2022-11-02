@@ -1,41 +1,64 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./styling/Navbar.css";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
+import "./styling/Navbar.css"
+import { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
 
-function Navbar() {
+
+let styles = {
+
+  color: "#FA6A36",
+
+}
+
+function Navigation() {
+
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+
+
+
+
+
+
   return (
-    <div className="navbar">
-      <nav>
-        <NavLink to="/login" className="buttonAuth">
-          login
-        </NavLink>
-        |
-        <NavLink to="/signup" className="buttonAuth">
-          signup
-        </NavLink>
-        |
-        <NavLink to="/" className="buttonAuth">
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand style={styles} href="/">
           Homepage
-        </NavLink>
-        |
-        <NavLink to="/exercises" className="buttonAuth">
-          Exercises
-        </NavLink>
-        |
-        <NavLink to="/create-exercise" className="buttonAuth">
-          Create Exercise
-        </NavLink>
-        |
-        <NavLink to="/plans" className="buttonAuth">
-          Plans
-        </NavLink>
-        |
-        <NavLink to="/create-plan" className="buttonAuth">
-          Create Plan
-        </NavLink>
-      </nav>
-    </div>
+        </Navbar.Brand>
+
+        <Navbar.Collapse id="responsive-navbar-nav">
+          {!isLoggedIn && (
+            <>
+              <Nav className="me-auto">
+                <Nav.Link href="/login"><Button style={styles} variant="outline">Login</Button></Nav.Link>
+                <Nav.Link href="/signup"><Button style={styles} variant="outline">Signup</Button></Nav.Link>
+              </Nav>
+            </>
+          )}
+
+          {isLoggedIn && (
+            <>
+              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+              <Button style={styles} variant="outline" onClick={logOutUser} href="/">Logout</Button>
+              <span>{user && user.name}</span>
+              <Nav>
+                <Nav.Link href="/exercises"><Button style={styles} variant="outline">Exercises</Button></Nav.Link>
+                <Nav.Link eventKey={2} href="/plans"><Button style={styles} variant="outline">Plans</Button></Nav.Link>
+
+              </Nav>
+            </>)}
+
+
+
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
 
-export default Navbar;
+export default Navigation;
