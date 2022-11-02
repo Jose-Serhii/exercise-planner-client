@@ -43,7 +43,7 @@ function ListOfExercises() {
             <>
               <Card.Header
                 style={styles}
-                className="  border-0 text-light"
+                className="border-0 text-light"
                 key={exercise._id}
               ></Card.Header>
               <Card.Body>
