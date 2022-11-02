@@ -15,7 +15,7 @@ function ExerciseDetails(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5005/api/exercises/${exerciseId}`, {
+      .get(`${process.env.REACT_APP_API_URL}/api/exercises/${exerciseId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -26,7 +26,7 @@ function ExerciseDetails(props) {
 
   const deleteExercise = () => {
     axios
-      .delete(`http://localhost:5005/api/exercises/${exerciseId}`, {
+      .delete(`${process.env.REACT_APP_API_URL}/api/exercises/${exerciseId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

@@ -4,47 +4,50 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function PlanDetails(props) {
-    const { planId } = useParams();
+  const { planId } = useParams();
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const [plan, setPlan] = useState({});
-    const storedToken = localStorage.getItem('authToken');
+  const [plan, setPlan] = useState({});
+  const storedToken = localStorage.getItem("authToken");
 
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/plans/${planId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        setPlan(response.data);
+      })
+      .catch((e) => console.log("error getting plan from API", e));
+  }, []);
 
-    useEffect(() => {
-        axios
-            .get(`http://localhost:5005/api/plans/${planId}`, {
-                headers: { Authorization: `Bearer ${storedToken}` },
-            })
-            .then((response) => {
-                setPlan(response.data);
-            })
-            .catch((e) => console.log("error getting plan from API", e));
-    }, []);
+  const deletePlan = () => {
+    console.log(planId);
+    axios
+      .delete(`${process.env.REACT_APP_API_URL}/api/plans/${planId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        navigate("/plans");
+      })
+      .catch((e) => console.log("error deleting characters", e));
+  };
 
-    const deletePlan = () => {
-        console.log(planId)
-        axios
-            .delete(`http://localhost:5005/api/plans/${planId}`, {
-                headers: { Authorization: `Bearer ${storedToken}` },
-            })
-            .then((response) => {
-                navigate("/plans");
-            })
-            .catch((e) => console.log("error deleting characters", e));
-    };
-
-    return (
-        <div>
-            <h3>{plan.day}</h3>
-            <h3>{plan.date}</h3>
-            <h3>{plan.activities?.map(ex => <p>{ex.title}</p>)}</h3>
-            <h3>{plan.description}</h3>
-            <button onClick={deletePlan}>delete this plan</button>
-            <Link to={`/plans/edit/${planId}`}>edit this plan</Link>
-        </div>
-    );
+  return (
+    <div>
+      <h3>{plan.day}</h3>
+      <h3>{plan.date}</h3>
+      <h3>
+        {plan.activities?.map((ex) => (
+          <p>{ex.title}</p>
+        ))}
+      </h3>
+      <h3>{plan.description}</h3>
+      <button onClick={deletePlan}>delete this plan</button>
+      <Link to={`/plans/edit/${planId}`}>edit this plan</Link>
+    </div>
+  );
 }
 
 export default PlanDetails;

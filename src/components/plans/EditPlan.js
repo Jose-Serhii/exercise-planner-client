@@ -1,28 +1,45 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-
-const API_URL = "http://localhost:5005";
+import {
+    Button,
+    Form,
+    FormControl,
+    FormLabel,
+    FormSelect,
+    Container,
+    FormCheck,
+    FormGroup,
+} from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function EditPlan(props) {
-
-    const storedToken = localStorage.getItem('authToken');
-
-
+    const storedToken = localStorage.getItem("authToken");
 
     const [day, setDay] = useState("");
     const [date, setDate] = useState("");
     const [activities, setActivities] = useState("");
     const [description, setDescription] = useState("");
-
-
+    const [exercises, setExercises] = useState([]);
 
     const { planId } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
         axios
-            .get(`http://localhost:5005/api/plans/${planId}`, {
+            .get(`${process.env.REACT_APP_API_URL}/api/exercises`, {
+                headers: { Authorization: `Bearer ${storedToken}` },
+            })
+            .then((response) => {
+                console.log(response.data);
+                setExercises(response.data);
+            })
+            .catch((err) => console.log(err));
+    }, []);
+
+    useEffect(() => {
+        axios
+            .get(`${process.env.REACT_APP_API_URL}/api/plans/${planId}`, {
                 headers: { Authorization: `Bearer ${storedToken}` },
             })
             .then((response) => {
@@ -31,58 +48,112 @@ function EditPlan(props) {
                 setDate(onePlan.date);
                 setActivities(onePlan.activities);
                 setDescription(onePlan.description);
-
-
             })
             .catch((error) => console.log(error));
-
     }, [planId]);
 
-
-
-
-    const handleFormSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const requestBody = { day, date, activities, description };
 
+        const storedToken = localStorage.getItem("authToken");
+
         axios
-            .put(`${API_URL}/api/plans/${planId}`, requestBody, {
-                headers: { Authorization: `Bearer ${storedToken}` }
-            })
+            .put(
+                `${process.env.REACT_APP_API_URL}/api/plans/${planId}`,
+                requestBody,
+                {
+                    headers: { Authorization: `Bearer ${storedToken}` },
+                }
+            )
             .then((response) => {
-                navigate(`/plans/${planId}`)
+                navigate(`/plans/${planId}`);
             });
+    };
+    const handleExercises = (e) => {
+        const activitiesCopy = [...activities];
+
+        if (e.target.checked) {
+            if (!activitiesCopy.includes(e.target.value)) {
+                activitiesCopy.push(e.target.value);
+                setActivities(activitiesCopy);
+            }
+        }
+
+        if (e.target.checked === false) {
+            const test = activitiesCopy.filter(
+                (activity) => activity !== e.target.value
+            );
+            setActivities(test);
+        }
     };
 
 
-
     return (
-        <div className="EditPlanPage">
-            <h3>Edit the Plan</h3>
+        <>
+            <Container className="w-50 mb-5">
+                <Form onSubmit={handleSubmit} id="plansform">
+                    <FormLabel className="mt-5">Day:</FormLabel>
+                    <FormSelect
+                        type="text"
+                        name="day"
+                        value={day}
+                        onChange={(e) => setDay(e.target.value)}
+                    >
+                        <option hidden>choose a day...</option>
+                        <option>Monday</option>
+                        <option>Tuesday</option>
+                        <option>Wednesday</option>
+                        <option>Thursday</option>
+                        <option>Friday</option>
+                        <option>Saturday</option>
+                        <option>Sunday</option>
+                    </FormSelect>
 
-            <form onSubmit={handleFormSubmit} id="exform">
-                <label>Day:</label>
-                <input
-                    type="text" name="day" value={day} onChange={(e) => setDay(e.target.value)} />
+                    <FormLabel className="mt-5">Date:</FormLabel>
+                    <FormControl
+                        placeholder="DD-MM-YYYY"
+                        type="text"
+                        name="date"
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
+                    />
 
-                <label>Date:</label>
-                <input
-                    type="text" name="date" value={date} onChange={(e) => setDate(e.target.value)} />
+                    <FormLabel className="mt-5">Activities:</FormLabel>
 
-                <label>Choose an activity:</label>
-                <input
-                    type="text" name="activities" value={activities} onChange={(e) => setActivities(e.target.value)} />
+                    {exercises.map((ex) => (
+                        <FormGroup
+                            className="mt-5"
+                            name="activities"
+                            value={activities}
+                            onChange={handleExercises}
+                        >
+                            <FormCheck
+                                multiple
+                                className="mt-5"
+                                id="custom-switch"
+                                type="switch"
+                                value={ex._id}
+                                label={ex.title}
+                            ></FormCheck>
+                        </FormGroup>
+                    ))}
 
-                <label>Description:</label>
-                <input
-                    type="text" name="description" value={description} onChange={(e) => setDescription(e.target.value)} />
+                    <FormLabel className="mt-5">Description:</FormLabel>
+                    <FormControl
+                        type="text"
+                        rows={4}
+                        name="description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
 
-
-
-                <button type="submit">Edit Plan</button>
-            </form>
-
-        </div>
+                    <Button variant="success" className="mt-4" type="submit">
+                        Save Changes
+                    </Button>
+                </Form>
+            </Container>
+        </>
     );
 }
 
