@@ -14,15 +14,16 @@ import PlanDetails from "./components/plans/PlanDetails";
 import EditPlan from "./components/plans/EditPlan";
 import { AuthContext } from "./context/auth.context";
 
-
-
 function App() {
   return (
     <div className="App">
       <Navigation />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/exercises" element={<ListOfExercises AuthContext={AuthContext} />} />
+        <Route
+          path="/exercises"
+          element={<ListOfExercises AuthContext={AuthContext} />}
+        />
         <Route path="/exercises/:exerciseId" element={<ExerciseDetails />} />
         <Route path="/create-exercise" element={<CreateExercise />} />
         <Route path="/exercises/edit/:exerciseId" element={<EditExercise />} />
