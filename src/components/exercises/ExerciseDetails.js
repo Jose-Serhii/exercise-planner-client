@@ -3,9 +3,13 @@ import { Component, useEffect, useState } from "react";
 import { useParams, useNavigate, NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+
+let styles = {
+  backgroundColor: "#FA6A36",
+};
 
 function ExerciseDetails(props) {
   const { exerciseId } = useParams();
@@ -14,13 +18,6 @@ function ExerciseDetails(props) {
 
   const [exercise, setExercise] = useState({});
   const storedToken = localStorage.getItem("authToken");
-  let styles = {
-    backgroundColor: "#FA6A36",
-  };
-  let stylesBtn = {
-    border: "2px solid #FA6A36",
-    color: "#FA6A36",
-  };
 
   useEffect(() => {
     axios
@@ -45,7 +42,7 @@ function ExerciseDetails(props) {
   };
 
   return (
-    <Container className="w-75 mt-3">
+    <Container className="w-75 mt-5">
       <Card className="text-left mt-3 border-0 bg-opacity-75" bg="dark">
         <Card.Header
           style={styles}
@@ -53,24 +50,101 @@ function ExerciseDetails(props) {
           key={exercise._id}
         ></Card.Header>
         <Card.Body>
-          <h3>{exercise.title}</h3>
-          <h3>{exercise.category}</h3>
-          <h3>{exercise.type}</h3>
-          <h3>{exercise.intensity}</h3>
-          <h3>{exercise.muscle}</h3>
-          <h3>{exercise.specificArea}</h3>
-          <h3>{exercise.duration}</h3>
-          <h3>{exercise.timeUnit}</h3>
-          <h3>{exercise.imageUrl}</h3>
-          <h3>{exercise.description}</h3>
+          <Container>
+            <Row>
+              <Col sm={12}>
+                <h2 className="text-light mb-5">{exercise.title}</h2>
+              </Col>
+            </Row>
+          </Container>
+
+          <Container>
+            <Row>
+              <Col>
+                <p className="text-light">
+                  Category:
+                  <strong style={{ fontSize: "1.5em" }}>
+                    {" "}
+                    {exercise.category}
+                  </strong>
+                </p>
+              </Col>
+              <Col></Col>
+              <Col>
+                <p className="text-light">
+                  Type of exercise:{" "}
+                  <strong style={{ fontSize: "1.5em" }}>{exercise.type}</strong>
+                </p>
+              </Col>
+            </Row>
+          </Container>
+          <Container>
+            <Row>
+              <Col>
+                <p className="text-light">
+                  Intensity:{" "}
+                  <strong style={{ fontSize: "1.5em" }}>
+                    {exercise.intensity}
+                  </strong>
+                </p>
+              </Col>
+              <Col></Col>
+              <Col>
+                <p className="text-light">
+                  Target muscle:
+                  <strong style={{ fontSize: "1.5em" }}>
+                    {" "}
+                    {exercise.muscle}
+                  </strong>
+                </p>
+              </Col>
+            </Row>
+          </Container>
+          <Container>
+            <Row>
+              <Col>
+                <p className="text-light">
+                  Specific area:{" "}
+                  <strong style={{ fontSize: "1.5em" }}>
+                    {exercise.specificArea}
+                  </strong>
+                </p>
+              </Col>
+              <Col></Col>
+              <Col>
+                <p className="text-light">
+                  Duration:{" "}
+                  <strong style={{ fontSize: "1.5em" }}>
+                    {exercise.duration} {exercise.timeUnit}
+                  </strong>
+                </p>
+              </Col>
+            </Row>
+          </Container>
+          <Container>
+            <Row>
+              <Col sm={12}>
+                <p className="text-light mt-5">
+                  <i style={{ fontSize: "1.5em" }}>{exercise.description}</i>
+                </p>
+              </Col>
+            </Row>
+          </Container>
         </Card.Body>
-        <Button variant="danger" onClick={deleteExercise}>
+      </Card>
+      <Container className="w-50 mt-3 ">
+        <Button variant="outline-danger" onClick={deleteExercise}>
           Delete
         </Button>
-        <Link className="text.secondary" to={`/exercises/edit/${exerciseId}`}>
-          edit this exercise
+
+        <Link
+          className="ms-3 "
+          style={{ textDecoration: "none" }}
+          to={`/exercises/edit/${exerciseId}`}
+        >
+          Edit
         </Link>
-      </Card>
+      </Container>
     </Container>
   );
 }
