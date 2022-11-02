@@ -32,12 +32,11 @@ function ListOfExercises() {
   }, []);
 
   return (
-
-    <Container className="w-75 mt-3">
+    <Container className="w-75 mt-3 mb-5">
       <Link to={"/create-exercise"}>
         <img src="../plus.png" style={{ width: "50px" }} />
       </Link>
-      <Card className="text-left mt-3 border-0" bg="dark">
+      <Card className="text-left mt-3 border-0 bg-opacity-75" bg="dark">
         {exercises.map((exercise) => {
           console.log(exercise);
           return (
