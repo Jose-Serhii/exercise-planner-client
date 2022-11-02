@@ -10,6 +10,10 @@ import {
   Container,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+let bgStyle = {
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  borderRadius: "10px",
+};
 
 function CreateExercise(props) {
   const navigate = useNavigate();
@@ -63,124 +67,122 @@ function CreateExercise(props) {
   };
 
   return (
-    <>
-      <Container className="w-50 mb-5">
-        <Form onSubmit={handleSubmit} id="exform">
-          <FormLabel className="mt-5">Title:</FormLabel>
-          <FormControl
-            type="text"
-            name="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+    <Container style={bgStyle} className="w-50 mt-5 mb-5">
+      <Form onSubmit={handleSubmit} id="exform">
+        <FormLabel className="mt-3 text-light">Title:</FormLabel>
+        <FormControl
+          type="text"
+          name="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
 
-          <FormLabel className="mt-3">Category:</FormLabel>
-          <FormControl
-            type="text"
-            name="category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
+        <FormLabel className="mt-3 text-light">Category:</FormLabel>
+        <FormControl
+          type="text"
+          name="category"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        />
 
-          <FormLabel className="mt-3">Choose a type:</FormLabel>
-          <FormSelect
-            type="text"
-            name="type"
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-          >
-            <option hidden>choose the type...</option>
-            <option>Cardio</option>
-            <option>Strength</option>
-            <option>Balance</option>
-            <option>Flexibility</option>
-            <option>Coordination</option>
-            <option>Warm-up</option>
-            <option>Other</option>
-          </FormSelect>
+        <FormLabel className="mt-3 text-light">Choose a type:</FormLabel>
+        <FormSelect
+          type="text"
+          name="type"
+          value={type}
+          onChange={(e) => setType(e.target.value)}
+        >
+          <option hidden>choose the type...</option>
+          <option>Cardio</option>
+          <option>Strength</option>
+          <option>Balance</option>
+          <option>Flexibility</option>
+          <option>Coordination</option>
+          <option>Warm-up</option>
+          <option>Other</option>
+        </FormSelect>
 
-          <FormLabel className="mt-3">Intensity:</FormLabel>
-          <FormSelect
-            type="text"
-            name="intensity"
-            value={intensity}
-            onChange={(e) => setIntensity(e.target.value)}
-          >
-            <option hidden>choose intensity...</option>
-            <option>Low</option>
-            <option>Moderate</option>
-            <option>High</option>
-          </FormSelect>
+        <FormLabel className="mt-3 text-light">Intensity:</FormLabel>
+        <FormSelect
+          type="text"
+          name="intensity"
+          value={intensity}
+          onChange={(e) => setIntensity(e.target.value)}
+        >
+          <option hidden>choose intensity...</option>
+          <option>Low</option>
+          <option>Moderate</option>
+          <option>High</option>
+        </FormSelect>
 
-          <FormLabel className="mt-3">Target muscle:</FormLabel>
-          <FormSelect
-            type="text"
-            name="muscle"
-            value={muscle}
-            onChange={(e) => setMuscle(e.target.value)}
-          >
-            <option hidden>choose muscle...</option>
-            <option>Chest</option>
-            <option>Back</option>
-            <option>Arms</option>
-            <option>Abdominals</option>
-            <option>Legs</option>
-            <option>Shoulders</option>
-            <option>Other</option>
-          </FormSelect>
+        <FormLabel className="mt-3 text-light">Target muscle:</FormLabel>
+        <FormSelect
+          type="text"
+          name="muscle"
+          value={muscle}
+          onChange={(e) => setMuscle(e.target.value)}
+        >
+          <option hidden>choose muscle...</option>
+          <option>Chest</option>
+          <option>Back</option>
+          <option>Arms</option>
+          <option>Abdominals</option>
+          <option>Legs</option>
+          <option>Shoulders</option>
+          <option>Other</option>
+        </FormSelect>
 
-          <FormLabel className="mt-3">Specific Area:</FormLabel>
-          <FormControl
-            type="text"
-            name="specificArea"
-            value={specificArea}
-            onChange={(e) => setSpecificArea(e.target.value)}
-          />
+        <FormLabel className="mt-3 text-light">Specific Area:</FormLabel>
+        <FormControl
+          type="text"
+          name="specificArea"
+          value={specificArea}
+          onChange={(e) => setSpecificArea(e.target.value)}
+        />
 
-          <FormLabel className="mt-3">Duration:</FormLabel>
-          <FormControl
-            type="text"
-            name="duration"
-            value={duration}
-            onChange={(e) => setDuration(e.target.value)}
-          />
+        <FormLabel className="mt-3 text-light">Duration:</FormLabel>
+        <FormControl
+          type="text"
+          name="duration"
+          value={duration}
+          onChange={(e) => setDuration(e.target.value)}
+        />
 
-          <FormLabel className="mt-3">Time Unit:</FormLabel>
-          <FormSelect
-            type="text"
-            name="timeUnit"
-            value={timeUnit}
-            onChange={(e) => setTimeUnit(e.target.value)}
-          >
-            <option hidden>time unit</option>
-            <option>Minutes</option>
-            <option>Hours</option>
-          </FormSelect>
+        <FormLabel className="mt-3 text-light">Time Unit:</FormLabel>
+        <FormSelect
+          type="text"
+          name="timeUnit"
+          value={timeUnit}
+          onChange={(e) => setTimeUnit(e.target.value)}
+        >
+          <option hidden>time unit</option>
+          <option>Minutes</option>
+          <option>Hours</option>
+        </FormSelect>
 
-          <FormLabel className="mt-3">Image:</FormLabel>
-          <FormControl
-            type="text"
-            name="imageUrl"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-          />
+        <FormLabel className="mt-3 text-light">Image:</FormLabel>
+        <FormControl
+          type="text"
+          name="imageUrl"
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+        />
 
-          <FormLabel className="mt-3">Description:</FormLabel>
-          <FormControl
-            as="textarea"
-            rows={4}
-            type="text"
-            name="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+        <FormLabel className="mt-3 text-light">Description:</FormLabel>
+        <FormControl
+          as="textarea"
+          rows={4}
+          type="text"
+          name="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
 
-          <Button className="mt-4" type="submit" variant="success">
-            Add Exercise
-          </Button>
-        </Form>
-      </Container>
-    </>
+        <Button className="mt-4 mb-3" type="submit" variant="success">
+          Add Exercise
+        </Button>
+      </Form>
+    </Container>
   );
 }
 

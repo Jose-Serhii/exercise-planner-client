@@ -2,22 +2,23 @@ import React from "react";
 import { Navlink, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "react-bootstrap/Button";
+
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Col, Container, Row } from "react-bootstrap";
 
+let styles = {
+  backgroundColor: "#FA6A36",
+};
+let stylesBtn = {
+  border: "2px solid #FA6A36",
+  color: "#FA6A36",
+};
+
 function ListOfExercises() {
   const [exercises, setExercises] = useState([]);
   const storedToken = localStorage.getItem("authToken");
-  let styles = {
-    backgroundColor: "#FA6A36",
-  };
-  let stylesBtn = {
-    border: "2px solid #FA6A36",
-    color: "#FA6A36",
-  };
 
   useEffect(() => {
     axios
