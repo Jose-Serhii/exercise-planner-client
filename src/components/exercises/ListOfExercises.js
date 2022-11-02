@@ -14,6 +14,10 @@ function ListOfExercises() {
   let styles = {
     backgroundColor: "#FA6A36",
   };
+  let stylesBtn = {
+    border: "2px solid #FA6A36",
+    color: "#FA6A36",
+  };
 
   useEffect(() => {
     axios
@@ -29,7 +33,10 @@ function ListOfExercises() {
 
   return (
     <Container className="w-75 mt-3">
-      <Card className="text-left mt-3 border-0" bg="dark" as="h5">
+      <Link to={"/create-exercise"}>
+        <img src="../plus.png" style={{ width: "50px" }} />
+      </Link>
+      <Card className="text-left mt-3 border-0" bg="dark">
         {exercises.map((exercise) => {
           console.log(exercise);
           return (
@@ -42,9 +49,9 @@ function ListOfExercises() {
                 {exercise.title}
               </Card.Header>
               <Card.Body>
-                <Card.Title className="text-light">
-                  Category: {exercise.category}
-                </Card.Title>
+                <Card.Text className="text-light">
+                  <p> Category: {exercise.category}</p>
+                </Card.Text>
                 <Card.Text className="text-light">
                   Type: {exercise.type}
                 </Card.Text>
@@ -55,7 +62,9 @@ function ListOfExercises() {
                   {exercise.duration} {exercise.timeUnit}
                 </Card.Text>
                 <Link to={`/exercises/${exercise._id}`}>
-                  <Button variant="primary">More Info</Button>
+                  <Button variant="light" style={stylesBtn}>
+                    More Info
+                  </Button>
                 </Link>
               </Card.Body>
             </>
