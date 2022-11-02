@@ -5,11 +5,15 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Stack from "react-bootstrap/Stack";
+
+import { Container } from "react-bootstrap";
 
 function ListOfExercises() {
   const [exercises, setExercises] = useState([]);
   const storedToken = localStorage.getItem("authToken");
+  let styles = {
+    backgroundColor: "#FA6A36",
+  };
 
   useEffect(() => {
     axios
@@ -24,39 +28,41 @@ function ListOfExercises() {
   }, []);
 
   return (
-    <Card className="text-left" as="h5">
-      {exercises.map((exercise) => {
-        console.log(exercise);
-        return (
-          <>
-            <div />
-            <Stack gap={3}>
-              <Card.Header className="cardCustom" key={exercise._id}>
+    <Container className="w-75 mt-3">
+      <Card className="text-left mt-3 border-0" bg="dark" as="h5">
+        {exercises.map((exercise) => {
+          console.log(exercise);
+          return (
+            <>
+              <Card.Header
+                style={styles}
+                className="  border-0 text-light"
+                key={exercise._id}
+              >
                 {exercise.title}
               </Card.Header>
-              <Card.Body className="cardBody">
-                <Card.Title className="cardCustom">
+              <Card.Body>
+                <Card.Title className="text-light">
                   Category: {exercise.category}
                 </Card.Title>
-                <Card.Text className="cardCustom">
+                <Card.Text className="text-light">
                   Type: {exercise.type}
                 </Card.Text>
-                <Card.Text className="cardCustom">
+                <Card.Text className="text-light">
                   Intensity: {exercise.intensity}
                 </Card.Text>
-                <Card.Text className="cardCustom">
+                <Card.Text className="text-light">
                   {exercise.duration} {exercise.timeUnit}
                 </Card.Text>
                 <Link to={`/exercises/${exercise._id}`}>
                   <Button variant="primary">More Info</Button>
                 </Link>
               </Card.Body>
-              <Card.Footer className="text-muted"></Card.Footer>
-            </Stack>
-          </>
-        );
-      })}
-    </Card>
+            </>
+          );
+        })}
+      </Card>
+    </Container>
   );
 }
 
