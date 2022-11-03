@@ -33,6 +33,9 @@ function ListOfPlans() {
   console.log(plans);
   return (
     <Container className="w-75 mt-3 mb-5">
+      <Link to={"/create-plan"}>
+        <img src="../plus.png" style={{ width: "50px" }} />
+      </Link>
       <Card className="text-left mt-3 border-0 bg-opacity-75 position-relative" bg="dark">
         {plans.length !== 0 &&
           plans.map((plan) => {
@@ -53,16 +56,17 @@ function ListOfPlans() {
                       <Col sm={4}>
                         <h3 className="text-light">{plan.date}</h3>
                       </Col>
+
                       <Col sm={4}></Col>
                       <Col sm={12} >
 
-                        <p className="text-center text-light">Exercises:</p>
+                        <p className="text-center text-light"><h4>Exercises</h4></p>
                         <Container  >
                           {plan.activities.map((activity) => (
                             <Row >
-                              <Col style={{ color: "white" }}>{activity.title}</Col>
-                              <Col style={{ color: "white" }}> {activity.intensity}</Col>
-                              <Col style={{ color: "white" }}>{activity.duration} {activity.timeUnit}</Col>
+                              <Col style={{ color: "white" }} className="mt-4">{activity.title}</Col>
+                              <Col style={{ color: "white" }} className="mt-4"> {activity.intensity}</Col>
+                              <Col style={{ color: "white" }} className="mt-4">{activity.duration} {activity.timeUnit}</Col>
                             </Row>
                           ))}
                         </Container>
