@@ -13,6 +13,11 @@ import {
   FormGroup,
 } from "react-bootstrap";
 
+let bgStyle = {
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  borderRadius: "10px",
+};
+
 function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -45,42 +50,50 @@ function Login(props) {
   };
 
   return (
-    <Container className="w-25 mb-5">
-      <h3 className="mt-5">Login</h3>
+    <Container style={bgStyle} className="w-25 mb-5">
+      <h3 className="mt-5 text-light">Login</h3>
 
-      <Form onSubmit={handleLoginSubmit}>
+      <Form className="mb-3" onSubmit={handleLoginSubmit}>
         <FormGroup>
-          <FormLabel className="mt-5">Email:</FormLabel>
+          <FormLabel className="mt-3 text-light">Email:</FormLabel>
           <FormControl
             type="email"
             name="email"
             value={email}
             onChange={handleEmail}
+            placeholder="email@gmail.com"
           />
-          <FormText className="text-muted">Please provide your email.</FormText>
+          <FormText className="text-white-50">
+            Please provide your email.
+          </FormText>
         </FormGroup>
 
         <FormGroup>
-          <FormLabel className="mt-3">Password:</FormLabel>
+          <FormLabel className="mt-3 text-light">Password:</FormLabel>
           <FormControl
             type="password"
             name="password"
             value={password}
             onChange={handlePassword}
+            placeholder="**********"
           />
-          <FormText className="text-muted">
+          <FormText className="text-white-50">
             Please provide your password.
           </FormText>
         </FormGroup>
 
-        <Button className="mt-4" type="submit">
+        <Button className="mt-2" type="submit">
           Login
         </Button>
-      </Form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+        <p className="mb-3 text-light">Don't have an account yet?</p>
+
+        <Link className="text-light" to={"/signup"}>
+          Sign Up
+        </Link>
+      </Form>
     </Container>
   );
 }
