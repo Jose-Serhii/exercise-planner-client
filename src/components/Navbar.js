@@ -8,9 +8,9 @@ import "./styling/Navbar.css";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { Row, Col } from "react-bootstrap";
-import imagelogo from "../home.png"
-import imagelogo2 from "../logout.png"
-import imagelogo3 from "../login.png"
+import imagelogo from "../home.png";
+import imagelogo2 from "../logout.png";
+import imagelogo3 from "../login.png";
 
 let styles = {
   color: "#FA6A36",
@@ -71,12 +71,11 @@ function Navigation() {
                       Plans
                     </Button>
                   </Nav.Link>
-                  <Nav.Link>
+                  <Nav.Link href="/">
                     <Button
                       style={styles}
                       variant="outline"
                       onClick={logOutUser}
-                      href="/"
                     >
                       <img to="/" style={{ width: "30px" }} src={imagelogo2} />
                       <br></br>
