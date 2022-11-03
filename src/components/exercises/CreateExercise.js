@@ -8,17 +8,15 @@ import {
   FormLabel,
   FormSelect,
   Container,
+  Row,
+  Col,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 
 let bgStyle = {
   backgroundColor: "rgba(0, 0, 0, 0.5)",
   borderRadius: "10px",
 };
-
-
-
 
 function CreateExercise(props) {
   const navigate = useNavigate();
@@ -90,7 +88,7 @@ function CreateExercise(props) {
           onChange={(e) => setCategory(e.target.value)}
         />
 
-        <FormLabel className="mt-3 text-light">Choose a type*:</FormLabel>
+        <FormLabel className="mt-3 text-light">Choose a type*</FormLabel>
         <FormSelect
           type="text"
           name="type"
@@ -107,7 +105,7 @@ function CreateExercise(props) {
           <option>Other</option>
         </FormSelect>
 
-        <FormLabel className="mt-3 text-light">Intensity*:</FormLabel>
+        <FormLabel className="mt-3 text-light">Intensity*</FormLabel>
         <FormSelect
           type="text"
           name="intensity"
@@ -120,7 +118,7 @@ function CreateExercise(props) {
           <option>High</option>
         </FormSelect>
 
-        <FormLabel className="mt-3 text-light">Target muscle*:</FormLabel>
+        <FormLabel className="mt-3 text-light">Target muscle*</FormLabel>
         <FormSelect
           type="text"
           name="muscle"
@@ -137,35 +135,39 @@ function CreateExercise(props) {
           <option>Other</option>
         </FormSelect>
 
-        <FormLabel className="mt-3 text-light">Specific Area:</FormLabel>
+        <FormLabel className="mt-3 text-light">Specific Area</FormLabel>
         <FormControl
           type="text"
           name="specificArea"
           value={specificArea}
           onChange={(e) => setSpecificArea(e.target.value)}
         />
+        <Row>
+          <Col>
+            <FormLabel className="mt-3 text-light">Duration</FormLabel>
+            <FormControl
+              type="text"
+              name="duration"
+              value={duration}
+              onChange={(e) => setDuration(e.target.value)}
+            />
+          </Col>
+          <Col>
+            <FormLabel className="mt-3 text-light">Time Unit</FormLabel>
+            <FormSelect
+              type="text"
+              name="timeUnit"
+              value={timeUnit}
+              onChange={(e) => setTimeUnit(e.target.value)}
+            >
+              <option hidden>time unit</option>
+              <option>Minutes</option>
+              <option>Hours</option>
+            </FormSelect>
+          </Col>
+        </Row>
 
-        <FormLabel className="mt-3 text-light">Duration:</FormLabel>
-        <FormControl
-          type="text"
-          name="duration"
-          value={duration}
-          onChange={(e) => setDuration(e.target.value)}
-        />
-
-        <FormLabel className="mt-3 text-light">Time Unit:</FormLabel>
-        <FormSelect
-          type="text"
-          name="timeUnit"
-          value={timeUnit}
-          onChange={(e) => setTimeUnit(e.target.value)}
-        >
-          <option hidden>time unit</option>
-          <option>Minutes</option>
-          <option>Hours</option>
-        </FormSelect>
-
-        <FormLabel className="mt-3 text-light">Image:</FormLabel>
+        <FormLabel className="mt-3 text-light">Image</FormLabel>
         <FormControl
           type="text"
           name="imageUrl"
@@ -173,7 +175,7 @@ function CreateExercise(props) {
           onChange={(e) => setImageUrl(e.target.value)}
         />
 
-        <FormLabel className="mt-3 text-light">Description:</FormLabel>
+        <FormLabel className="mt-3 text-light">Description</FormLabel>
         <FormControl
           as="textarea"
           rows={4}
@@ -183,7 +185,11 @@ function CreateExercise(props) {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <Button className="mt-4 mb-3 text-light" type="submit" variant="outline-success">
+        <Button
+          className="mt-4 mb-3 text-light"
+          type="submit"
+          variant="outline-success"
+        >
           Add Exercise
         </Button>
       </Form>
