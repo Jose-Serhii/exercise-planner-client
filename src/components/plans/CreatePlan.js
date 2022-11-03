@@ -130,6 +130,7 @@ function CreatePlan() {
           <FormLabel className="mt-5">Description:</FormLabel>
           <FormControl
             type="text"
+            as="textarea"
             name="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
