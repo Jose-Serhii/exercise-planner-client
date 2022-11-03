@@ -84,8 +84,8 @@ function EditExercise(props) {
 
   return (
     <>
-      <Container style={bgStyle} className="w-50 mt-5 mb-5 text-light">
-        <Form onSubmit={handleFormSubmit} id="exform">
+      <Container style={bgStyle} className="w-50 mb-5 text-light">
+        <Form onSubmit={handleFormSubmit} id="exform" className="mt-5">
           <FormLabel className="mt-5">Title:</FormLabel>
           <FormControl
             type="text"

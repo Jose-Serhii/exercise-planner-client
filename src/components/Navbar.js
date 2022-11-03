@@ -8,6 +8,8 @@ import "./styling/Navbar.css";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { Row, Col } from "react-bootstrap";
+import imagelogo from "../home.png"
+import imagelogo2 from "../logout.png"
 
 let styles = {
   color: "#FA6A36",
@@ -24,7 +26,7 @@ function Navigation() {
       <Row className="align-content-start w-100 ">
         <Col sm={4}>
           <Navbar.Brand style={styles} href="/">
-            <img src="../home.png" style={{ width: "150px" }} />
+            <img src={imagelogo} style={{ width: "150px" }} />
           </Navbar.Brand>
         </Col>
         <Col sm={5}></Col>
@@ -75,7 +77,7 @@ function Navigation() {
                       onClick={logOutUser}
                       href="/"
                     >
-                      <img style={{ width: "30px" }} src="../logout.png" />
+                      <img style={{ width: "30px" }} src={imagelogo2} />
                       <br></br>
                       Logout
                     </Button>
