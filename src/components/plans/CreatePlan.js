@@ -88,7 +88,7 @@ function CreatePlan() {
     <>
       <Container style={bgStyle} className="mt-5 w-50 mb-5 text-light">
         <Form onSubmit={handleSubmit} id="plansform">
-          <FormLabel className="mt-5">Day:</FormLabel>
+          <FormLabel className="mt-5">Day</FormLabel>
           <FormSelect
             type="text"
             name="day"
@@ -105,7 +105,7 @@ function CreatePlan() {
             <option>Sunday</option>
           </FormSelect>
 
-          <FormLabel className="mt-5">Date:</FormLabel>
+          <FormLabel className="mt-5">Date</FormLabel>
           <FormControl
             placeholder="DD-MM-YYYY"
             type="text"
@@ -114,7 +114,7 @@ function CreatePlan() {
             onChange={(e) => setDate(e.target.value)}
           />
 
-          <FormLabel className="mt-5">Activities:</FormLabel>
+          <FormLabel className="mt-5">Activities</FormLabel>
           <Row><Col>
 
 
@@ -142,7 +142,7 @@ function CreatePlan() {
             <Col></Col>
           </Row>
 
-          <FormLabel className="mt-5">Description:</FormLabel>
+          <FormLabel className="mt-5">Description</FormLabel>
           <FormControl
             type="text"
             as="textarea"

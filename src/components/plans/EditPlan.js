@@ -100,7 +100,7 @@ function EditPlan(props) {
     <>
       <Container style={bgStyle} className="w-50 mt-5 mb-5 text-light">
         <Form onSubmit={handleSubmit} id="plansform">
-          <FormLabel className="mt-5">Day:</FormLabel>
+          <FormLabel className="mt-5">Day</FormLabel>
           <FormSelect
             type="text"
             name="day"
@@ -117,7 +117,7 @@ function EditPlan(props) {
             <option>Sunday</option>
           </FormSelect>
 
-          <FormLabel className="mt-5">Date:</FormLabel>
+          <FormLabel className="mt-5">Date</FormLabel>
           <FormControl
             placeholder="DD-MM-YYYY"
             type="text"
@@ -144,7 +144,7 @@ function EditPlan(props) {
             </FormGroup>
           ))}
 
-          <FormLabel className="mt-5">Description:</FormLabel>
+          <FormLabel className="mt-5">Description</FormLabel>
           <FormControl
             type="text"
             rows={4}

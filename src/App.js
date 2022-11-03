@@ -22,7 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route
-          path="/exercises" element={<isPrivate><ListOfExercises /></isPrivate>} />
+          path="/exercises" element={<IsPrivate><ListOfExercises /></IsPrivate>} />
         <Route path="/exercises/:exerciseId" element={<IsPrivate><ExerciseDetails /></IsPrivate>} />
         <Route path="/create-exercise" element={<IsPrivate><CreateExercise /></IsPrivate>} />
         <Route path="/exercises/edit/:exerciseId" element={<IsPrivate><EditExercise /></IsPrivate>} />
