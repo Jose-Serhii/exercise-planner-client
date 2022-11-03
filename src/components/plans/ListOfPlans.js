@@ -8,17 +8,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Col, Container, Row } from "react-bootstrap";
 
+let styles = {
+  backgroundColor: "#FA6A36",
+};
+let stylesBtn = {
+  border: "2px solid #FA6A36",
+  color: "#FA6A36",
+};
+
 function ListOfPlans() {
   const [plans, setPlans] = useState([]);
   const storedToken = localStorage.getItem("authToken");
 
-  let styles = {
-    backgroundColor: "#FA6A36",
-  };
-  let stylesBtn = {
-    border: "2px solid #FA6A36",
-    color: "#FA6A36",
-  };
 
   useEffect(() => {
     axios
@@ -30,7 +31,8 @@ function ListOfPlans() {
       })
       .catch((err) => console.log(err));
   }, []);
-  console.log(plans);
+
+
   return (
     <Container className="w-75 mt-3 mb-5">
       <Link to={"/create-plan"}>

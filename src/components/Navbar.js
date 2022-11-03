@@ -10,6 +10,7 @@ import { AuthContext } from "../context/auth.context";
 import { Row, Col } from "react-bootstrap";
 import imagelogo from "../home.png"
 import imagelogo2 from "../logout.png"
+import imagelogo3 from "../login.png"
 
 let styles = {
   color: "#FA6A36",
@@ -41,7 +42,7 @@ function Navigation() {
                 </Nav.Link>
                 <Nav.Link href="/login">
                   <Button style={styles} className="ms-5" variant="outline">
-                    <img style={{ width: "30px" }} src="../login.png" />
+                    <img style={{ width: "30px" }} src={imagelogo3} />
                     <br></br>
                     Login
                   </Button>
@@ -77,7 +78,7 @@ function Navigation() {
                       onClick={logOutUser}
                       href="/"
                     >
-                      <img style={{ width: "30px" }} src={imagelogo2} />
+                      <img to="/" style={{ width: "30px" }} src={imagelogo2} />
                       <br></br>
                       Logout
                     </Button>
