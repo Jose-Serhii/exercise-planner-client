@@ -13,6 +13,11 @@ import {
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+let bgStyle = {
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  borderRadius: "10px",
+};
+
 function EditPlan(props) {
   const storedToken = localStorage.getItem("authToken");
 
@@ -93,7 +98,7 @@ function EditPlan(props) {
 
   return (
     <>
-      <Container className="w-50 mb-5">
+      <Container style={bgStyle} className="w-50 mt-5 mb-5">
         <Form onSubmit={handleSubmit} id="plansform">
           <FormLabel className="mt-5">Day:</FormLabel>
           <FormSelect
@@ -126,6 +131,7 @@ function EditPlan(props) {
           {exercises.map((ex) => (
             <FormGroup className="mt-5" name="activities" value={activities}>
               <FormCheck
+                inline={true}
                 multiple
                 className="mt-5"
                 id="custom-switch"
@@ -147,7 +153,7 @@ function EditPlan(props) {
             onChange={(e) => setDescription(e.target.value)}
           />
 
-          <Button variant="success" className="mt-4" type="submit">
+          <Button variant="outline-success text-light mt-4 mb-3" className="mt-4" type="submit">
             Save Changes
           </Button>
         </Form>

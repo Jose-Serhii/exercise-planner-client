@@ -14,6 +14,11 @@ import {
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+let bgStyle = {
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  borderRadius: "10px",
+};
+
 
 function CreatePlan() {
   const navigate = useNavigate();
@@ -79,7 +84,7 @@ function CreatePlan() {
 
   return (
     <>
-      <Container className="w-50 mb-5">
+      <Container style={bgStyle} className="w-50 mb-5 text-light">
         <Form onSubmit={handleSubmit} id="plansform">
           <FormLabel className="mt-5">Day:</FormLabel>
           <FormSelect
@@ -117,6 +122,7 @@ function CreatePlan() {
               onChange={handleExercises}
             >
               <FormCheck
+                inline={true}
                 multiple
                 className="mt-5"
                 id="custom-switch"
@@ -134,9 +140,10 @@ function CreatePlan() {
             name="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+
           />
 
-          <Button variant="success" className="mt-4" type="submit">
+          <Button variant="outline-success" className="mt-4 mb-3 text-light" type="submit">
             Create Plan
           </Button>
         </Form>

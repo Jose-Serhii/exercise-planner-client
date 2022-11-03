@@ -11,6 +11,11 @@ import {
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+let bgStyle = {
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  borderRadius: "10px",
+};
+
 function EditExercise(props) {
   const storedToken = localStorage.getItem("authToken");
 
@@ -79,7 +84,7 @@ function EditExercise(props) {
 
   return (
     <>
-      <Container className="w-50 mb-5">
+      <Container style={bgStyle} className="w-50 mt-5 mb-5 text-light">
         <Form onSubmit={handleFormSubmit} id="exform">
           <FormLabel className="mt-5">Title:</FormLabel>
           <FormControl
@@ -190,7 +195,7 @@ function EditExercise(props) {
             onChange={(e) => setDescription(e.target.value)}
           />
 
-          <Button className="mt-4" type="submit" variant="success">
+          <Button className="mt-4 mb-5 text-light" type="submit" variant="outline-success">
             Save Changes
           </Button>
         </Form>

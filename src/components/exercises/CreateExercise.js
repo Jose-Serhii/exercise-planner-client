@@ -10,10 +10,15 @@ import {
   Container,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+
 let bgStyle = {
   backgroundColor: "rgba(0, 0, 0, 0.5)",
   borderRadius: "10px",
 };
+
+
+
 
 function CreateExercise(props) {
   const navigate = useNavigate();
@@ -69,7 +74,7 @@ function CreateExercise(props) {
   return (
     <Container style={bgStyle} className="w-50 mt-5 mb-5">
       <Form onSubmit={handleSubmit} id="exform">
-        <FormLabel className="mt-3 text-light">Title:</FormLabel>
+        <FormLabel className="mt-5 text-light">Title:</FormLabel>
         <FormControl
           type="text"
           name="title"
@@ -178,7 +183,7 @@ function CreateExercise(props) {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <Button className="mt-4 mb-3" type="submit" variant="success">
+        <Button className="mt-4 mb-3 text-light" type="submit" variant="outline-success">
           Add Exercise
         </Button>
       </Form>

@@ -42,7 +42,7 @@ function ExerciseDetails(props) {
   };
 
   return (
-    <Container className="w-75 mt-5">
+    <Container className="w-50 mt-5 mb-5">
       <Card className="text-left mt-3 border-0 bg-opacity-75" bg="dark">
         <Card.Header
           style={styles}
@@ -129,21 +129,22 @@ function ExerciseDetails(props) {
                 </p>
               </Col>
             </Row>
+            <Button className="text-light mt-4 mb-3" variant="outline-danger" onClick={deleteExercise}>
+              Delete
+            </Button>
+            {'  '}
+            <Button
+              className="mt-4 mb-3 text-light"
+              style={{ textDecoration: "none" }}
+              href={`/exercises/edit/${exerciseId}`}
+              variant="outline-primary"
+            >Edit
+            </Button>
           </Container>
         </Card.Body>
       </Card>
       <Container className="w-50 mt-3 ">
-        <Button variant="outline-danger" onClick={deleteExercise}>
-          Delete
-        </Button>
 
-        <Link
-          className="ms-3 "
-          style={{ textDecoration: "none" }}
-          to={`/exercises/edit/${exerciseId}`}
-        >
-          Edit
-        </Link>
       </Container>
     </Container>
   );
