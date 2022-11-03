@@ -98,7 +98,7 @@ function EditPlan(props) {
 
   return (
     <>
-      <Container style={bgStyle} className="w-50 mt-5 mb-5">
+      <Container style={bgStyle} className="w-50 mt-5 mb-5 text-light">
         <Form onSubmit={handleSubmit} id="plansform">
           <FormLabel className="mt-5">Day:</FormLabel>
           <FormSelect

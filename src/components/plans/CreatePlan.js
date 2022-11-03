@@ -11,6 +11,8 @@ import {
   Container,
   FormCheck,
   FormGroup,
+  Row,
+  Col,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -84,7 +86,7 @@ function CreatePlan() {
 
   return (
     <>
-      <Container style={bgStyle} className="w-50 mb-5 text-light">
+      <Container style={bgStyle} className="mt-5 w-50 mb-5 text-light">
         <Form onSubmit={handleSubmit} id="plansform">
           <FormLabel className="mt-5">Day:</FormLabel>
           <FormSelect
@@ -113,25 +115,32 @@ function CreatePlan() {
           />
 
           <FormLabel className="mt-5">Activities:</FormLabel>
+          <Row><Col>
 
-          {exercises.map((ex) => (
-            <FormGroup
-              className="mt-5"
-              name="activities"
-              value={activities}
-              onChange={handleExercises}
-            >
-              <FormCheck
-                inline={true}
-                multiple
-                className="mt-5"
-                id="custom-switch"
-                type="switch"
-                value={ex._id}
-                label={ex.title}
-              ></FormCheck>
-            </FormGroup>
-          ))}
+
+            {exercises.map((ex) => (
+              <FormGroup
+                className="mt-2"
+                name="activities"
+                value={activities}
+                onChange={handleExercises}
+              >
+                <FormCheck
+                  inline={true}
+                  multiple
+                  className="mt-3"
+                  id="custom-switch"
+                  type="switch"
+                  value={ex._id}
+                  label={ex.title}
+                ></FormCheck>
+              </FormGroup>
+
+            ))}
+          </Col>
+            <Col></Col>
+            <Col></Col>
+          </Row>
 
           <FormLabel className="mt-5">Description:</FormLabel>
           <FormControl
