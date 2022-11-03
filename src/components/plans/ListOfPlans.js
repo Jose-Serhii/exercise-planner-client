@@ -54,13 +54,13 @@ function ListOfPlans() {
                       </Col>
                       <Col sm={4}></Col>
                       <Col sm={4}>
-                        <h3 className="text-light">{plan.date}</h3>
+                        <h6 className="text-light">{plan.date}</h6>
                       </Col>
 
                       <Col sm={4}></Col>
                       <Col sm={12} >
 
-                        <p className="text-center text-light"><h4>Exercises</h4></p>
+                        <p className="text-center text-light mt-5"><h4>Activities</h4></p>
                         <Container  >
                           {plan.activities.map((activity) => (
                             <Row >
