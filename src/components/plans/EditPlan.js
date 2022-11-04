@@ -126,7 +126,7 @@ function EditPlan(props) {
             onChange={(e) => setDate(e.target.value)}
           />
 
-          <FormLabel className="mt-5">Activities:</FormLabel>
+          <FormLabel className="mt-5">Activities</FormLabel>
 
           {exercises.map((ex) => (
             <FormGroup className="mt-5" name="activities" value={activities}>
@@ -147,6 +147,7 @@ function EditPlan(props) {
           <FormLabel className="mt-5">Description</FormLabel>
           <FormControl
             type="text"
+            as="textarea"
             rows={4}
             name="description"
             value={description}

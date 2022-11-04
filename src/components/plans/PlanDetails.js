@@ -47,7 +47,7 @@ function PlanDetails(props) {
   };
 
   return (
-    <Container className="w-50 mb-5 text-light">
+    <Container className="w-50 mt-5 mb-5">
       <Card style={bgStyle} >
         <Card.Header
           style={styles}

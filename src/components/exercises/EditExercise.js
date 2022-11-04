@@ -88,7 +88,7 @@ function EditExercise(props) {
     <>
       <Container style={bgStyle} className="w-50 mb-5 text-light">
         <Form onSubmit={handleFormSubmit} id="exform" className="mt-5">
-          <FormLabel className="mt-5">Title:</FormLabel>
+          <FormLabel className="mt-5">Title*</FormLabel>
           <FormControl
             type="text"
             name="title"
@@ -96,7 +96,7 @@ function EditExercise(props) {
             onChange={(e) => setTitle(e.target.value)}
           />
 
-          <FormLabel className="mt-3">Category</FormLabel>
+          <FormLabel className="mt-3">Category*</FormLabel>
           <FormControl
             type="text"
             name="category"
@@ -104,7 +104,7 @@ function EditExercise(props) {
             onChange={(e) => setCategory(e.target.value)}
           />
 
-          <FormLabel className="mt-3">Choose a type</FormLabel>
+          <FormLabel className="mt-3">Choose a type*</FormLabel>
           <FormSelect
             type="text"
             name="type"
@@ -121,7 +121,7 @@ function EditExercise(props) {
             <option>Other</option>
           </FormSelect>
 
-          <FormLabel className="mt-3">Intensity</FormLabel>
+          <FormLabel className="mt-3">Intensity*</FormLabel>
           <FormSelect
             type="text"
             name="intensity"
@@ -134,7 +134,7 @@ function EditExercise(props) {
             <option>High</option>
           </FormSelect>
 
-          <FormLabel className="mt-3">Target muscle</FormLabel>
+          <FormLabel className="mt-3">Target muscle*</FormLabel>
           <FormSelect
             type="text"
             name="muscle"

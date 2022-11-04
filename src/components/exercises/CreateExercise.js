@@ -72,16 +72,18 @@ function CreateExercise(props) {
   return (
     <Container style={bgStyle} className="w-50 mt-5 mb-5">
       <Form onSubmit={handleSubmit} id="exform">
-        <FormLabel className="mt-5 text-light">Title*:</FormLabel>
+        <FormLabel className="mt-5 text-light">Title*</FormLabel>
         <FormControl
+          placeholder="Choose a name for your exercise"
           type="text"
           name="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
 
-        <FormLabel className="mt-3 text-light">Category*:</FormLabel>
+        <FormLabel className="mt-3 text-light">Category*</FormLabel>
         <FormControl
+          placeholder="Yoga, Push-ups, Coding.."
           type="text"
           name="category"
           value={category}
@@ -137,6 +139,7 @@ function CreateExercise(props) {
 
         <FormLabel className="mt-3 text-light">Specific Area</FormLabel>
         <FormControl
+          placeholder="Lowerback, Hips, Thighs.."
           type="text"
           name="specificArea"
           value={specificArea}
