@@ -1,6 +1,6 @@
 # Get fit with Joltii
 
-Joltii is a personalise fitness programmer. It let you create your own exercise's library and a build up a plan, where you can follow your own instruction for an even more customized work-out.
+Joltii is a personalize fitness programmer. It let you create your own exercise's library and a build up a plan, where you can follow your own instruction for an even more customized work-out.
 
 ## Exercises
 
